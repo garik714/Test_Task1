@@ -4,22 +4,37 @@ use Intervention\Image\ImageManagerStatic as Image;
 require 'vendor/autoload.php';
 
 // Путь к исходному изображению
-$imagePath_pnj = '/home/garik/Downloads/Photo_png.png'; // Путь к PNG или JPG файлу
-$imagePath_jpg = '/home/garik/Downloads/Photo_jpj.jpg';
+$pathToPngImage = './InputImages/Photo1.png'; // Путь к PNG или JPG файлу
+$pathToJpgImage = './InputImages/Photo2.jpg';
 
 // Путь к водяному знаку
-$watermarkPath = '/home/garik/Downloads/watermark.png'; // Путь к PNG файлу с водяным знаком
-$watermark = Image::make($watermarkPath);
-$watermark->opacity(45);
+$watermarkPath = './Watermarks/watermark1.png'; // Путь к PNG файлу с водяным знаком
+$watermark1 = Image::make($watermarkPath);
+$watermark1->rotate(110);
+// Zoom the watermark image to the desired dimensions
+$watermark1->resize(1800, 1800);
+
+$watermark1->opacity(45);
+
+$watermark2 = Image::make($watermarkPath);
+$watermark2->rotate(110);
+// Zoom the watermark image to the desired dimensions
+$watermark2->resize(1400, 1400);
+
+$watermark2->opacity(23);
+
+
 // Загружаем исходное изображение
-$png_image = Image::make($imagePath_pnj);
-$jpg_image = Image::make($imagePath_jpg);
+$PngImage = Image::make($pathToPngImage);
+$JpgImage = Image::make($pathToJpgImage);
+
 // Накладываем водяной знак на исходное изображение
-$png_image->insert($watermark, 'top-right', );
-$jpg_image->insert($watermark, 'top-right', );
+$PngImage->insert($watermark2, 'center', );
+$JpgImage->insert($watermark1, 'center', );
+
 // Сохраняем измененное изображение
-$png_image->save('output.png/pngfile.png');
-$jpg_image->save('output.jpg/pngfile.jpg');
+$PngImage->save('OutputImages/PngImage.png');
+$JpgImage->save('OutputImages/JpgImage.jpg');
 
 
 
