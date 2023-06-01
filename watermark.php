@@ -21,7 +21,7 @@ $watermark2->rotate(110);
 // Zoom the watermark image to the desired dimensions
 $watermark2->resize(1400, 1400);
 
-$watermark2->opacity(23);
+$watermark2->opacity(26);
 
 
 // Загружаем исходное изображение
